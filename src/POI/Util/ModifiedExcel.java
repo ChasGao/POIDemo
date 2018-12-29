@@ -1,5 +1,6 @@
 package POI.Util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,8 +14,10 @@ public class ModifiedExcel {
 
 	public static void main(String[] args) {
 		ModifiedExcel me = new ModifiedExcel();
-		me.readExecl("E:\\4-23\\服务请求类型配置数据提取模板-20181123175003.xlsx");
-		me.writeExcel("E:\\4-23\\服务请求类型配置数据提取模板-20181123175003.xlsx");
+//		me.readExecl("‪G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\book2.xlsx");
+//		me.writeExcel("G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\服务请求类型配置数据提取模板-20181123175003.xlsx");
+		boolean exists = new File("..\\WEB-INF\\book2.xlsx").exists();
+		System.out.println(exists);
 	}
 
 	//修改excel表格，path为excel修改前路径（E:\\4-23\\服务请求类型配置数据提取模板new-20181123175003.xlsx）
@@ -34,7 +37,7 @@ public class ModifiedExcel {
 	        sh.getRow(4).getCell((short) i).setCellValue(100210 + i);
 	      }
 	      //将修改后的文件写出到D:\\excel目录下
-	      FileOutputStream os = new FileOutputStream("E:\\4-23\\服务请求类型配置数据提取模板new-20181123175003.xlsx");
+	      FileOutputStream os = new FileOutputStream("G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\服务请求类型配置数据提取模板new-20181123175003.xlsx");
 	      // FileOutputStream os = new FileOutputStream("D:\\test.xlsx");//此路径也可写修改前的路径，相当于在原来excel文档上修改
 	      os.flush();
 	      //将Excel写出
