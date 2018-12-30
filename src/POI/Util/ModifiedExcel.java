@@ -14,10 +14,10 @@ public class ModifiedExcel {
 
 	public static void main(String[] args) {
 		ModifiedExcel me = new ModifiedExcel();
-//		me.readExecl("‪G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\book2.xlsx");
+		me.readExecl("G:\\GitRepository\\POIDemo\\WebRoot\\WEB-INF\\book.xls");
 //		me.writeExcel("G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\服务请求类型配置数据提取模板-20181123175003.xlsx");
-		boolean exists = new File("..\\WEB-INF\\book2.xlsx").exists();
-		System.out.println(exists);
+//		boolean exists = new File("G:\\GitRepository\\POIDemo\\WebRoot\\WEB-INF\\book2.xlsx").exists();
+//		System.out.println(exists);
 	}
 
 	//修改excel表格，path为excel修改前路径（E:\\4-23\\服务请求类型配置数据提取模板new-20181123175003.xlsx）
@@ -53,6 +53,10 @@ public class ModifiedExcel {
 	//读取excel表格中的数据，path代表excel路径
 	  public void readExecl(String path) {
 	    try {
+//	    	path = "G:\\GitRepository\\POIDemo\\WebRoot\\WEB-INF\\book2.xlsx";
+	    	File file = new File(path);
+	    	boolean exist = file.exists();
+	    	System.out.println(path + ", exists: " + exist);
 	      //读取的时候可以使用流，也可以直接使用文件名
 	      XSSFWorkbook xwb = new XSSFWorkbook(path);
 	      //循环工作表sheet
