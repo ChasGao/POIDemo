@@ -14,12 +14,55 @@ public class ModifiedExcel {
 
 	public static void main(String[] args) {
 		ModifiedExcel me = new ModifiedExcel();
-		me.readExecl("G:\\GitRepository\\POIDemo\\WebRoot\\WEB-INF\\book.xls");
-//		me.writeExcel("G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\服务请求类型配置数据提取模板-20181123175003.xlsx");
-//		boolean exists = new File("G:\\GitRepository\\POIDemo\\WebRoot\\WEB-INF\\book2.xlsx").exists();
-//		System.out.println(exists);
+//		me.readExecl("D:\\!workspaceeclipse\\POIDemo\\doc\\提取模板.xlsx");
+		me.writeExcel("D:\\!workspaceeclipse\\POIDemo\\doc\\提取模板.xlsx");
 	}
 
+	public void modifiedExcel(){
+		try{
+		String targetOrgPath = "D:\\!workspaceeclipse\\POIDemo\\doc\\二线目标机构.xlsx";
+		
+		XSSFWorkbook xwb = new XSSFWorkbook(targetOrgPath);
+		XSSFSheet sheet = xwb.getSheet("Sheet1");
+		for (int numRow = 0; numRow <= sheet.getLastRowNum(); numRow++) {
+    	  XSSFRow xRow = sheet.getRow(numRow);
+          if (xRow == null) {
+            continue;
+          }	     
+          //TODO 待续
+          
+       
+          
+		}  
+		//循环工作表sheet
+	      for (int numSheet = 0; numSheet < xwb.getNumberOfSheets(); numSheet++) {
+	        XSSFSheet xSheet = xwb.getSheetAt(numSheet);
+	        if (xSheet == null) {
+	          continue;
+	        }
+	        //循环行row
+	        for (int numRow = 0; numRow <= xSheet.getLastRowNum(); numRow++) {
+	          XSSFRow xRow = xSheet.getRow(numRow);
+	          if (xRow == null) {
+	            continue;
+	          }
+	          //循环列cell
+	          for (int numCell = 0; numCell <= xRow.getLastCellNum(); numCell++) {
+	            XSSFCell xCell = xRow.getCell(numCell);
+	            if (xCell == null) {
+	              continue;
+	            }
+	            //输出值
+	            System.out.println("excel表格中取出的数据" + getValue(xCell));
+	          }
+	        }
+
+	      }
+		}catch(Exception e){
+	    e.printStackTrace();	  
+	    }
+		
+	}
 	//修改excel表格，path为excel修改前路径（E:\\4-23\\服务请求类型配置数据提取模板new-20181123175003.xlsx）
 	  public void writeExcel(String path) {
 	    try {
@@ -30,14 +73,17 @@ public class ModifiedExcel {
 	      // 创建一个webbook，对应一个Excel文件
 	      XSSFWorkbook workbook = new XSSFWorkbook(fileInput);
 	      //对应Excel文件中的sheet，0代表第一个
-	      XSSFSheet sh = workbook.getSheetAt(0);
-	      //修改excle表的第5行，从第三列开始的数据
-	      for (int i = 2; i < 4; i++) {
-	        //对第五行的数据修改
-	        sh.getRow(4).getCell((short) i).setCellValue(100210 + i);
-	      }
+//	      XSSFSheet sh = workbook.getSheetAt(0);
+	      XSSFSheet sh = workbook.getSheet("模板");
+	      XSSFCell cell = sh.getRow(2).getCell(8);
+	      cell.setCellValue("1000");
+	      //修改excle表的第5行，从第2列开始的数据
+/*	      for (int i = 1; i < 4; i++) {
+	        //对第3行的数据修改
+	        sh.getRow(2).getCell(i).setCellValue(100210 + i);
+	      }*/
 	      //将修改后的文件写出到D:\\excel目录下
-	      FileOutputStream os = new FileOutputStream("G:\\\\GitRepository\\\\POIDemo\\\\WebRoot\\\\WEB-INF\\\\服务请求类型配置数据提取模板new-20181123175003.xlsx");
+	      FileOutputStream os = new FileOutputStream("D:\\!workspaceeclipse\\POIDemo\\doc\\提取模板 - 副本.xlsx");
 	      // FileOutputStream os = new FileOutputStream("D:\\test.xlsx");//此路径也可写修改前的路径，相当于在原来excel文档上修改
 	      os.flush();
 	      //将Excel写出
