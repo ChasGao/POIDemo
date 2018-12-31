@@ -6,8 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -24,6 +26,7 @@ public class ModifiedExcel {
 	}
 
 	public void modifiedExcel(){
+		
 		//Sept 1
 		List<Map<String, String>> targetOrgAndSRTypeIdList = new ArrayList<>();
 		
@@ -33,6 +36,8 @@ public class ModifiedExcel {
 		XSSFWorkbook xwb = new XSSFWorkbook(targetOrgPath);
 		XSSFSheet sheet = xwb.getSheet("Sheet1");
 		XSSFRow xRow = null;
+		
+		Set targetOrgAndSRTypeIdSet = new HashSet<>();
 		
 		System.out.println("二线目标机构文档行数: "+ sheet.getLastRowNum());
 		for (int numRow = 0; numRow <= sheet.getLastRowNum(); numRow++) {
@@ -49,12 +54,17 @@ public class ModifiedExcel {
           targetOrgAndSRTypeIdMap.put("targetOrg", targetOrg);
           targetOrgAndSRTypeIdList.add(targetOrgAndSRTypeIdMap);
           
+          targetOrgAndSRTypeIdSet.add(SRTypeId);
 		}  
 		System.out.println("targetOrgAndSRTypeIdList大小是: " + targetOrgAndSRTypeIdList.size());
 
+		System.out.println("targetOrgAndSRTypeIdSet Set集合 size大小: "  + targetOrgAndSRTypeIdSet.size());
+		
 		}catch(Exception e){
 			e.printStackTrace();	  
 	    }
+		
+		
 		
 		// Sept 2
 		
