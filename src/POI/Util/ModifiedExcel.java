@@ -37,7 +37,7 @@ public class ModifiedExcel {
 		XSSFSheet sheet = xwb.getSheet("Sheet1");
 		XSSFRow xRow = null;
 		
-		Set targetOrgAndSRTypeIdSet = new HashSet<>();
+		Set SRTypeIdSet = new HashSet<>();
 		
 		System.out.println("二线目标机构文档行数: "+ sheet.getLastRowNum());
 		for (int numRow = 0; numRow <= sheet.getLastRowNum(); numRow++) {
@@ -46,19 +46,24 @@ public class ModifiedExcel {
             continue;
           }	     
           //TODO 待续 
-          Map<String, String> targetOrgAndSRTypeIdMap = new HashMap<>();
-          String SRTypeId = xRow.getCell(0).getStringCellValue();
-          
+          String SRTypeId = xRow.getCell(0).getStringCellValue();          
           String targetOrg = xRow.getCell(2).getStringCellValue();
+          
+          if(SRTypeIdSet.contains(SRTypeId))
+        	  continue;
+          
+          SRTypeIdSet.add(SRTypeId);
+          
+          Map<String, String> targetOrgAndSRTypeIdMap = new HashMap<>();
           targetOrgAndSRTypeIdMap.put("srTypeId", SRTypeId);   
           targetOrgAndSRTypeIdMap.put("targetOrg", targetOrg);
           targetOrgAndSRTypeIdList.add(targetOrgAndSRTypeIdMap);
           
-          targetOrgAndSRTypeIdSet.add(SRTypeId);
+          SRTypeIdSet.add(SRTypeId);
 		}  
 		System.out.println("targetOrgAndSRTypeIdList大小是: " + targetOrgAndSRTypeIdList.size());
 
-		System.out.println("targetOrgAndSRTypeIdSet Set集合 size大小: "  + targetOrgAndSRTypeIdSet.size());
+		System.out.println("SRTypeIdSet Set集合 size大小: "  + SRTypeIdSet.size());
 		
 		}catch(Exception e){
 			e.printStackTrace();	  
