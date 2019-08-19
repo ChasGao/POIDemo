@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="lib/commons-codec-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/poi-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="lib/poi-3.12-20150511.jar" sourcepath="lib/poi-3.12-20150511.jar"/>
 	<classpathentry kind="lib" path="lib/poi-excelant-3.12-20150511.jar"/>
 	<classpathentry kind="lib" path="lib/poi-ooxml-3.12-20150511.jar"/>
 	<classpathentry kind="lib" path="lib/poi-ooxml-schemas-3.12-20150511.jar"/>
